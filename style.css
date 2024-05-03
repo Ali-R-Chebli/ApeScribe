@@ -7,21 +7,22 @@
 
 :root {
     --card-height: 9vh;
-    --card-width: calc(var(--card-height) * 5);
+    --card-width: calc(var(--card-height) *  5  );
 }
 
-* {
+* { 
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0  ;
     caret-color: transparent;
+    user-select: none;
 }
 
-body {
+body{ 
     position: relative;
 }
 
-.body {
+.body { 
     background-color: black;
     z-index: -5;
     padding-top: 10vh;
@@ -37,7 +38,7 @@ body {
 }
 
 
-.container {
+.container { 
     width: 70%;
     overflow: hidden;
     display: flex;
@@ -47,7 +48,7 @@ body {
     align-self: center;
 }
 
-.cursor {
+.cursor { 
     position: absolute;
     width: 2.7px;
     background-color: #76ec00;
@@ -55,7 +56,7 @@ body {
     transition: left 0.125s ease;
 }
 
-.main {
+.main { 
     position: absolute;
     top: 0;
     width: 100%;
@@ -65,31 +66,32 @@ body {
     row-gap: 8px;
 }
 
-.main>div {
+.main > div { 
     padding: 1px;
     display: flex;
     display: flex;
     gap: 1.4px;
 }
 
-.letter {
+.letter { 
     transition: 0.187s;
     caret-color: transparent;
     color: rgb(65, 65, 65);
+    padding: 0 0 0 1px;
 }
 
-.main>div>div::selection {
+.main > div > div::selection { 
     background-color: #76ec00;
     color: white;
 }
 
 
 
-.bord {
+.bord { 
     border-bottom: 5px aqua solid;
 }
 
-.true {
+.true { 
     color: rgb(255, 255, 255);
     transition: 0.4s;
 }
@@ -103,18 +105,17 @@ body {
 .wordFalse {
     position: relative;
 }
-
 .wordFalse::after {
     content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 2px solid rgba(205, 0, 0, 0.852);
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    border-bottom: 2px solid rgba(205, 0, 0, 0.852); 
 }
 
-.letterAdd {
-    font-size: 34px;
+.letterAdd { 
+    font-size: 34px ;
     color: rgba(205, 0, 0, 0.537);
 }
 
@@ -124,7 +125,7 @@ body {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50% , -50%);
     display: flex;
     justify-content: space-between;
     caret-color: transparent;
@@ -133,28 +134,28 @@ body {
 
 }
 
-#addText {
+#addText { 
     width: 700px;
     height: 250px;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top:50%;
+    transform: translate(-50% , -50%);
     border: none;
     text-align: left;
-    padding: 20px;
+    padding: 20px; 
     display: flex;
     flex-wrap: wrap;
     resize: none;
     display: none;
 }
 
-#addText:focus {
+#addText:focus { 
     outline: none;
 }
 
 
-.box>div {
+.box > div { 
     opacity: 0;
     transition: 0.5s;
     position: absolute;
@@ -162,27 +163,24 @@ body {
     transition: all 0.5s ease;
 }
 
-.box>div:nth-child(2) {
+.box > div:nth-child(2) { 
     opacity: 1;
-    left: 25%;
+    left: 25% ;
+}
+.box:hover > div:nth-child(3) { 
+    opacity: 1;
+    left: 40% ;
+}
+.box:hover > div:nth-child(4) { 
+    opacity: 1;
+    left:55% ;
+}
+.box:hover > div:nth-child(5) { 
+    opacity: 1;
+    left:70% ;
 }
 
-.box:hover>div:nth-child(3) {
-    opacity: 1;
-    left: 40%;
-}
-
-.box:hover>div:nth-child(4) {
-    opacity: 1;
-    left: 55%;
-}
-
-.box:hover>div:nth-child(5) {
-    opacity: 1;
-    left: 70%;
-}
-
-.box>div:hover {
+.box > div:hover { 
     color: #ffffff;
 }
 
@@ -202,22 +200,32 @@ body {
     display: flex;
     font-size: 1.5em;
     cursor: pointer;
+    font-family: cursive;
     align-self: flex-start;
     transition: all 0.6s ease;
+
+    box-shadow: 
+          0px 4px 10px #d4ffa9, /* light green shadow */
+          0px 8px 25px #9de15a, /* dark green shadow */
+          0px 16px 50px #80ff00; /* yellow shadow */
+
 }
 
-.dynamicIsland::before {
+/* .dynamicIsland::before {
     content: "";
-    position: absolute;
+    position: absolute;         
     width: 100.5%;
     height: 104%;
-    border-radius: 80px;
     background-image: linear-gradient(var(--rotate), #d4ffa9, #9de15a 43%, #80ff00);
-}
+    border-radius: 80px;
+    transition: all 0s;
+} */
 
-.dynamicIsland::after {
+
+
+/* .dynamicIsland::after {
     content: "";
-    position: absolute;
+    position: absolute ;
     height: 115%;
     width: 126%;
     margin: 0 auto;
@@ -226,11 +234,11 @@ body {
     transform: scale(0.8);
     filter: blur(calc(var(--card-height) / 6));
     background-image: linear-gradient(var(--rotate), #d4ffa9, #9de15a 43%, #80ff00);
-    transition: all .5s;
-}
+    transition: all 0s;
+} */
 
 
-.boxIsland {
+.boxIsland { 
     z-index: 2;
     position: absolute;
     width: 100%;
@@ -244,24 +252,37 @@ body {
     left: 0;
     display: flex;
     justify-content: space-between;
+    /* overflow: hidden; */
 }
-
-.boxIsland>div {
-    padding: 19px;
+.boxIsland > div {
     width: calc(100% / 4);
     height: 100%;
     position: relative;
     opacity: 0;
     transition: all 1s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
 }
 
-.boxIsland>div>.name {
+.boxIsland > div > svg { 
+    width: calc( var( --card-width ) / 4 - 60px  )  ;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate( -50% , -50% );
+}
+
+.boxIsland > div > div:first-child {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate( -50% , -50% );
+} 
+
+.boxIsland > div > .name { 
     position: absolute;
     bottom: 0;
-    transform: translate(0, 50%);
+    left: 50%;
+    transform: translate(-50% , 50%);
     border-radius: 90px;
     background-color: #5fbe00;
     font-size: 16px;
@@ -270,30 +291,35 @@ body {
     transition: all 0.3s ease;
     caret-color: transparent;
     user-select: none;
+    visibility: visible;
 }
 
-.boxIsland>div:hover>.name {
+
+.boxIsland > div:hover > .name { 
     opacity: 1;
 }
 
-.timer1,
-.timer2,
-.timer3,
-.timer4 {
+
+
+.timer1 , 
+.timer2 , 
+.timer3 ,
+.timer4 { 
     position: absolute;
     color: white;
     opacity: 0;
     left: 0;
-    top: 0;
+    top: 50%;
+    transform: translate( 0 , -50% );
     transition: all 0.3s ease;
-    font-size: 32px;
-    transform: translate(0, 25%);
+    font-size: 23px;
     caret-color: transparent;
 }
 
-.timer1:hover,
-.timer2:hover,
-.timer3:hover,
-.timer4:hover {
+.timer1:hover , 
+.timer2:hover , 
+.timer3:hover ,
+.timer4:hover { 
     color: #5fbe00;
-}
+} 
+
