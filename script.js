@@ -11,6 +11,11 @@ var next = document.querySelector(".boxIsland > div:nth-child(2)")
 var replay = document.querySelector(".boxIsland > div:nth-child(3)")
 var add = document.querySelector(".boxIsland > div:nth-child(4)")
 
+var ClockName = document.querySelectorAll(".name")[0]
+var nextName = document.querySelectorAll(".name")[1]
+var replayName = document.querySelectorAll(".name")[2]
+var addName = document.querySelectorAll(".name")[3]
+
 var clocksvg = document.querySelector(".boxIsland > div:nth-child(1) > svg")
 var nextsvg = document.querySelector(".boxIsland > div:nth-child(2) > svg")
 var replaysvg = document.querySelector(".boxIsland > div:nth-child(3) > svg")
@@ -295,6 +300,49 @@ function addToHtml(text){
     //     textArea.style.display = `block`
     // })
 
+    add.addEventListener("click" , function() {
+        if ( !boxIsland.classList.contains("inp")) {
+            boxIsland.classList.add("inp")
+            clock.style.display = 'none'
+            next.style.display = 'none'
+            replay.style.display = 'none'
+            var textAdded = document.createElement("input")
+            boxIsland.appendChild(textAdded)
+            textAdded.style.width = 80 + '%'
+            textAdded.style.background = "transparent"
+            textAdded.style.caretColor = '#76ec00'
+            textAdded.style.color = 'white'
+            textAdded.style.fontSize = 26 + 'px'
+            textAdded.style.border = 'none'
+            textAdded.style.outline = 'none'
+            textAdded.style.paddingRight = 10 + "px"
+            textAdded.focus();
+            showName(add , addName , false )
+            allow = false
+    
+            document.addEventListener('keydown' , function(e) {
+                if ( e.key == "Enter") {
+                    console.log(textAdded.value)
+                    refreshText(textAdded.value)
+                    texts.push(textAdded.value)
+                    countClickNext = texts.length - 1
+                    allow = true
+                    boxIsland.removeChild(textAdded)
+                    clock.style.display = 'block'
+                    next.style.display = 'block'
+                    replay.style.display = 'block'
+                    showName(add , addName , true )
+                    boxIsland.classList.remove("inp")
+                }
+            })
+        }
+
+
+
+    })
+
+
+
     next.addEventListener("click" , function() {
         countClickNext++
         countClickNext == texts.length ? countClickNext = 0 : countClickNext
@@ -315,15 +363,7 @@ function addToHtml(text){
     })
 
 
-    document.addEventListener('keydown' , function(e) {
-        if ( e.key == "Enter" && window.getComputedStyle(textArea).display == "block") {
-            refreshText(textArea.value)
-            texts.push(textArea.value)
-            countClickNext = texts.length - 1
-            textArea.style.display = `none`
-            allow = true
-        }
-    })
+
 
 
 
@@ -370,7 +410,6 @@ boxIsland.addEventListener('mouseenter' , function() {
     }else {
         Array.from(boxIsland.children).forEach(e => e.style.opacity = 1)
     }
-
 
 })
 
@@ -455,13 +494,6 @@ clock.addEventListener('click' , function() {
         timer3.style.opacity = '1'
         timer4.style.opacity = '1'
 
-
-        // timer1.style.left = 80 + '%'
-        // timer2.style.left = 160 + '%'
-        // timer3.style.left = 240 + '%'
-        // timer4.style.left = 300 + '%'
-
-
         timer1.style.left = boxIsland.clientWidth * 0.40 - timer1.clientWidth - 40  + 'px'
         timer2.style.left = boxIsland.clientWidth * 0.60 - timer2.clientWidth - 40  + 'px'
         timer3.style.left = boxIsland.clientWidth * 0.80 - timer3.clientWidth - 40 + 'px'
@@ -529,5 +561,15 @@ function timerFunction() {
 }
 
 
-
-
+function showName ( element , name , bool ) {
+    element.addEventListener('mouseenter' , function() {
+            name.style.opacity = bool ? 1 : 0  ;
+    })
+    element.addEventListener('mouseleave' , function() {
+        name.style.opacity = 0 ;
+    })
+}
+showName( clock , ClockName , true )
+showName( next , nextName , true )
+showName( replay , replayName , true )
+showName( add , addName , true )

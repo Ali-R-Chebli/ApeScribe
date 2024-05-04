@@ -194,48 +194,25 @@ body{
     padding: 3px;
     position: absolute;
     border-radius: 80px;
+
+    /* display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
-    display: flex;
+    align-items: center; */
+
     font-size: 1.5em;
     cursor: pointer;
     font-family: cursive;
     align-self: flex-start;
     transition: all 0.6s ease;
-
     box-shadow: 
           0px 4px 10px #d4ffa9, /* light green shadow */
           0px 8px 25px #9de15a, /* dark green shadow */
           0px 16px 50px #80ff00; /* yellow shadow */
+            display: flex;
+            justify-content: space-between;
 
 }
-
-/* .dynamicIsland::before {
-    content: "";
-    position: absolute;         
-    width: 100.5%;
-    height: 104%;
-    background-image: linear-gradient(var(--rotate), #d4ffa9, #9de15a 43%, #80ff00);
-    border-radius: 80px;
-    transition: all 0s;
-} */
-
-
-
-/* .dynamicIsland::after {
-    content: "";
-    position: absolute ;
-    height: 115%;
-    width: 126%;
-    margin: 0 auto;
-    top: 8%;
-    border-radius: 80px;
-    transform: scale(0.8);
-    filter: blur(calc(var(--card-height) / 6));
-    background-image: linear-gradient(var(--rotate), #d4ffa9, #9de15a 43%, #80ff00);
-    transition: all 0s;
-} */
 
 
 .boxIsland { 
@@ -252,7 +229,7 @@ body{
     left: 0;
     display: flex;
     justify-content: space-between;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 .boxIsland > div {
     width: calc(100% / 4);
@@ -278,11 +255,11 @@ body{
     transform: translate( -50% , -50% );
 } 
 
-.boxIsland > div > .name { 
+.name { 
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translate(-50% , 50%);
+    z-index: 2;
+    height: max-content;
     border-radius: 90px;
     background-color: #5fbe00;
     font-size: 16px;
@@ -295,10 +272,10 @@ body{
 }
 
 
-.boxIsland > div:hover > .name { 
-    opacity: 1;
-}
-
+.name:nth-child(2){left: calc( 25% / 2  ) ; transform: translate(-50% , 50%);}
+.name:nth-child(3){left: calc( 25% + ( 25% / 2 ) ); transform: translate(-50% , 50%);}
+.name:nth-child(4){left: calc( 50% + ( 25% / 2 ) ); transform: translate(-50% , 50%);}
+.name:nth-child(5){left:calc( 75% + ( 25% / 2 ) ); transform: translate(-50% , 50%);}
 
 
 .timer1 , 
