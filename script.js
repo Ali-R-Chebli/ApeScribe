@@ -6,6 +6,14 @@ var cursor = document.getElementById("cursor")
 var container = document.getElementById("container")
 var htmlString = ``
 var countw = 0
+var numberTrueWord = 0 ;
+var numberword = 0  ;
+var numberLetter ; 
+var numberTrueLetter ;
+var numberLetterAdd ;
+var keySound = document.getElementById('keySound') ; 
+
+
 var clock = document.querySelector(".boxIsland > div:nth-child(1)")
 var next = document.querySelector(".boxIsland > div:nth-child(2)")
 var replay = document.querySelector(".boxIsland > div:nth-child(3)")
@@ -39,9 +47,14 @@ var testTimer2 = true
 var countdownInterval
 var data
 var countClickNext = 0
-var texts = ['cat dog hat run sun sit box egg lip pet pig fun bat tap bus cup pen nut fan web hop top leg pot map pan tap bed egg cup hut log jet ten fit hid mud jig van win bit pen dot nun wig kit fun bun sun lid rat fox jog key cod gun rug pad log sit pot run bun tan pet lid mop jig win dot nut bug log jog sad pin hug tap map pen bin pot lid ram nag tab rat sit tag nod big cod jug fun nun had hot dug dug nag rag nag wag tin rip' , 'ali chebli' , 'ali zein' , 'razi' , 'abd al rahman' , 'hadi hmouda' , 'ousama' , 'zakaria']
 
-addToHtml(texts[0])    
+var texts2 = ["the sun rose slowly in the morning sky birds chirped happily in the trees flowers swayed gently in the breeze a cat purred contentedly on the windowsill children skipped and played in the yard a dog wagged its tail eagerly at the sight of its owner a butterfly flitted from flower to flower in search of nectar a squirrel chattered noisily from its perch in the tree a bee buzzed busily among the blossoms a bunny hopped playfully across the grass the smell of freshly cut grass filled the air laughter echoed through the neighborhood as families enjoyed the sunny day friends gathered for a picnic in the park sandwiches were shared and stories were told memories were made under the clear blue sky" , "the moon glowed softly in the night sky stars twinkled like diamonds above the quiet town crickets chirped rhythmically in the grass frogs croaked in the nearby pond owls hooted from their perches in the trees a gentle breeze rustled the leaves of the tall oaks fireflies danced in the darkness, lighting up the night a cat prowled silently along the fence a dog barked in the distance, breaking the silence a mouse scurried across the ground, seeking shelter from the night a rabbit nibbled on clover under the moonlight the scent of jasmine filled the air, carried by the breeze laughter echoed from a nearby house as friends gathered for a late-night chat memories were made under the stars, illuminated by the moon's soft glow" , "the rain fell softly on the roof of the house puddles formed on the sidewalk as the water pooled together children splashed happily in the rain, their laughter echoing through the streets umbrellas bobbed up and down as people hurried along the wet pavement a dog shook itself dry, sending droplets flying in all directions the smell of petrichor filled the air, a comforting scent after the rain flowers glistened with raindrops, their colors vibrant against the gray sky a rainbow appeared in the distance, its colors brightening up the gloomy day a snail emerged from its shell, gliding slowly across the damp ground birds took shelter under the eaves of buildings, chirping contentedly as they waited for the rain to stop the sound of raindrops tapping against the window was soothing, a lullaby for the soul"]
+
+
+var texts = ['cat dog hat run sun sit box egg lip pet pig fun bat tap bus cup pen nut fan web hop top leg pot map pan tap bed egg cup hut log jet ten fit hid mud jig van win bit pen dot nun wig kit fun bun sun lid rat fox jog key cod gun rug pad log sit pot run bun tan pet lid mop jig win dot nut bug log jog sad pin hug tap map pen bin pot lid ram nag tab rat sit tag nod big cod jug fun nun had hot dug dug nag rag nag wag tin rip' , "an apple fell from the tree followed by a banana a cat quickly approached followed by a curious dog an elephant appeared in the distance while a fish swam gracefully in the nearby pond the grass was green and the house stood tall against the blue sky ice cream was melting in the sun as children played and laughed suddenly a kangaroo jumped by followed by a lion's roar a monkey swung from tree to tree searching for its next meal in a cozy nest a family of birds rested peacefully nearby an orange sunset painted the sky as penguins waddled along the icy shore the queen bee buzzed around overseeing her bustling hive a rabbit hopped by disappearing into the bushes the warmth of the sun embraced everything filling the world with light and life" , "a dog barked loudly while chasing a ball children laughed and played in the park birds sang sweet melodies in the trees colorful flowers bloomed in the garden butterflies fluttered gracefully in the air a squirrel scurried up a tree trunk to find its hidden stash of nuts a cat stretched lazily in the warm sun a gentle breeze rustled the leaves of the tall oak trees the sky was clear and the sun shone brightly overhead a stream flowed gently nearby ducks paddled in the calm waters a rabbit nibbled on fresh green grass a friendly neighbor waved hello as they passed by the smell of freshly baked cookies wafted from a nearby bakery happiness filled the air as friends gathered to enjoy each other's company" , texts2[0] , texts2[1] , texts2[2] ]
+
+addToHtml(texts[0])
+
 
 var letter = document.querySelector(`#main > div:nth-child(${iWord}) > div:nth-child(${iLetter})`)
 var word = document.querySelector(`#main > div:nth-child(${iWord})`)
@@ -64,7 +77,16 @@ cursorFunction(letter , false)
 
     document.addEventListener('keydown' , function(e) {
             if(allow) {
-        if (e.keyCode >= 65 && e.keyCode <= 90 || e.key == ' ' || e.key == 'Backspace' ) {
+        if ( (e.keyCode >= 65 && e.keyCode <= 90) || 
+        e.keyCode === 188 || 
+        e.keyCode === 190 || 
+        e.keyCode === 222 ||
+        e.key == ' ' ||
+        e.key == 'Backspace' ) {
+
+            keySound.currentTime = 0;
+            keySound.play() ;
+        
 
         letter = document.querySelector(`#main > div:nth-child(${iWord}) > div:nth-child(${iLetter})`)
         word = document.querySelector(`#main > div:nth-child(${iWord})`)
@@ -86,6 +108,8 @@ cursorFunction(letter , false)
                             word.classList.add("wordFalse")
                         }
                     })
+                    if ( !word.classList.contains("wordFalse")) { numberTrueWord++ }
+                    numberword++ ;
                     iWord++
                     word = document.querySelector(`#main > div:nth-child(${iWord})`)
                     iLetter = 1
@@ -93,9 +117,11 @@ cursorFunction(letter , false)
                     letter = document.querySelector(`#main > div:nth-child(${iWord}) > div:nth-child(${iLetter })`)
                     cursorFunction(letter , false)
                     testw = true ;
-                    countw++
-                }
+                    countw++ ;
 
+                    console.log(numberword + '  number of all')
+                    console.log(numberTrueWord + '  number of ture')
+                }
             }//for spacee 
             
             
@@ -133,7 +159,6 @@ cursorFunction(letter , false)
                 cursorFunction(letter , true)
                 testw = false ;
                 countw = 0 ;
-                // testTimer = true
                 timerFunction();
                 }
             }//test the letter
@@ -164,7 +189,12 @@ cursorFunction(letter , false)
                 if (word.previousElementSibling.classList.contains("word")) {
                     countw++
                     if ( countw == 2) {
-                    iWord > 1 ? iWord-- : iWord
+                        if ( word.classList.contains("wordFalse") ) {
+                            numberTrueWord-- ;
+                            console.log('from the if') ;
+                        }
+                        numberword-- ;
+                        iWord > 1 ? iWord-- : iWord
                     word = document.querySelector(`#main > div:nth-child(${iWord})`)
                     word.classList.remove('wordFalse')
                     iLetter = word.getElementsByClassName("done").length + 1
@@ -198,6 +228,15 @@ cursorFunction(letter , false)
         //------------------- for the auto space
 }
 }
+
+
+// for clc the acc
+numberLetterAdd = this.documentElement.querySelectorAll('.letterAdd').length ;
+numberLetter = document.querySelectorAll('.done').length + numberLetterAdd ;
+numberTrueLetter = Array.from(document.querySelectorAll('.done')).filter(e => e.classList.contains("true")).length 
+// for clc the acc
+
+
 })
 
 
@@ -293,15 +332,9 @@ function addToHtml(text){
         items = Array.from( document.querySelectorAll('.word') );
         findLine(false)
     }
-    
-    // var textArea = document.getElementById('addText')
-    // add.addEventListener("click" , function() {
-    //     allow = false
-    //     textArea.style.display = `block`
-    // })
 
     add.addEventListener("click" , function() {
-        if ( !boxIsland.classList.contains("inp")) {
+        if ( !boxIsland.classList.contains("inp") ) {
             boxIsland.classList.add("inp")
             clock.style.display = 'none'
             next.style.display = 'none'
@@ -321,26 +354,34 @@ function addToHtml(text){
             allow = false
     
             document.addEventListener('keydown' , function(e) {
-                if ( e.key == "Enter") {
-                    console.log(textAdded.value)
-                    refreshText(textAdded.value)
-                    texts.push(textAdded.value)
-                    countClickNext = texts.length - 1
-                    allow = true
-                    boxIsland.removeChild(textAdded)
-                    clock.style.display = 'block'
-                    next.style.display = 'block'
-                    replay.style.display = 'block'
-                    showName(add , addName , true )
-                    boxIsland.classList.remove("inp")
+                if ( e.key == "Enter" &&  boxIsland.classList.contains("inp") ) {
+
+                    if ( textAdded.value != '' ) {
+                        console.log(textAdded.value)
+                        refreshText(textAdded.value)
+                        texts.push(textAdded.value)
+                        countClickNext = texts.length - 1
+                        allow = true
+                        boxIsland.removeChild(textAdded)
+                        clock.style.display = 'block'
+                        next.style.display = 'block'
+                        replay.style.display = 'block'
+                        showName(add , addName , true )
+                        boxIsland.classList.remove("inp")
+                    }else {
+                        countClickNext = texts.length - 1
+                        allow = true
+                        boxIsland.removeChild(textAdded)
+                        clock.style.display = 'block'
+                        next.style.display = 'block'
+                        replay.style.display = 'block'
+                        showName(add , addName , true )
+                        boxIsland.classList.remove("inp")
+                    }
                 }
             })
         }
-
-
-
     })
-
 
 
     next.addEventListener("click" , function() {
@@ -349,8 +390,10 @@ function addToHtml(text){
         refreshText(texts[countClickNext])
     })
 
-
-    replay.addEventListener("click" , function() {
+// replayreplay
+    replay.addEventListener("click" , replayClick )
+    function replayClick() {
+        numberTrueWord = 0 ;
         refreshText(texts[countClickNext])
         clearInterval(countdownInterval);
         allow = true ;
@@ -360,19 +403,28 @@ function addToHtml(text){
             clock.insertAdjacentHTML('afterbegin', `<div>${data}</div>`);
             clock.firstChild.style.width = 'max-content'
         }
-    })
+    }
 
 
 
-
+    function restart() {
+        refreshText(texts[countClickNext])
+        clearInterval(countdownInterval);
+        allow = true ;
+        testTimer2 = true
+        if (data != undefined){
+            clock.removeChild(clock.firstChild)
+            clock.insertAdjacentHTML('afterbegin', `<div>${data}</div>`);
+            clock.firstChild.style.width = 'max-content'
+        }
+    }
 
 
 var durations = [15000 , 30000 , 60000 , 120000]
 var iDurations = 0
-
-
 function clickOnTime(element , string , duration) {
-    element.addEventListener('click' , function() {
+    element.addEventListener('click' , function(  ) {
+        numberTrueWord = 0 ;
         data = string
         testTimer = true
         testTimer2 = true
@@ -386,13 +438,37 @@ function clickOnTime(element , string , duration) {
         clock.classList.add("timerOn")
         clocksvg.style.display = 'none'
         clock.style.padding = 19 + 'px'
+
+        // add the replay function replay ;
+        replayClick() ;
+
     })
 }
-
 clickOnTime(timer1 , '0 : 15' , 0)
 clickOnTime(timer2 , '0 : 30' , 1)
 clickOnTime(timer3 , '1 : 00' , 2)
 clickOnTime(timer4 , '2 : 00' , 3)
+
+var timers = ['' ,  [timer1 , '0 : 15' , 0]
+, [timer2 , '0 : 30' , 1]
+,  [timer3 , '1 : 00' , 2] , ''
+, '' , '' , [timer4 , '2 : 00' , 3] ]
+
+function timeFromContact( element , string , duration ) {
+    data = string
+    testTimer = true
+    testTimer2 = true
+    iDurations = duration
+    clock.style.transition = 'all 0s ease'
+    element.style.left = 0
+    clock.removeChild(clock.firstChild)
+    clock.insertAdjacentHTML('afterbegin', `<div>${string}</div>`);
+    clock.firstChild.style.width = 'max-content'
+    document.querySelector('.name').style.display = 'none'
+    clock.classList.add("timerOn")
+    clocksvg.style.display = 'none'
+    clock.style.padding = 19 + 'px'
+}
 
 
 
@@ -413,19 +489,14 @@ boxIsland.addEventListener('mouseenter' , function() {
 
 })
 
-
-boxIsland.addEventListener('mouseleave' , function() {
+function mouseleave() {
     dynamicIsland.style.width = dynamicIsland.clientHeight * 5 + 'px'
-
     if ( clock.classList.contains('timerOn') ) { 
-
-
+        console.log('form the mouse leave of time on ')
         Array.from(boxIsland.children).forEach(e => e.classList.contains("timerOn") ? e : e.style.display = "none")
-
         clock.style.width = 100 + '%'
         boxIsland.style.width = clock.firstChild.clientWidth * 2 + 'px'
         dynamicIsland.style.width = boxIsland.clientWidth + 'px'
-
 
         if ( !testClickClock ) { 
             next.style.transition = 'all 1s ease'
@@ -436,12 +507,6 @@ boxIsland.addEventListener('mouseleave' , function() {
             timer2.style.left = 0 + '%'
             timer3.style.left = 0 + '%'
             timer4.style.left = 0 + '%'
-
-            // timer1.style.height = 0 
-            // timer2.style.height = 0
-            // timer3.style.height = 0 
-            // timer4.style.height = 0 
-
 
             timer1.style.opacity = '0'
             timer2.style.opacity = '0'
@@ -455,10 +520,10 @@ boxIsland.addEventListener('mouseleave' , function() {
 
     }
     else { 
-    Array.from(boxIsland.children).forEach(e => e.style.opacity = 0)
+    Array.from(boxIsland.children).forEach(e => e.style.opacity = 0.15)
     }
-
-})
+}
+boxIsland.addEventListener( 'mouseleave' , mouseleave )
 
 
 function hoverIcon (icon , index , leave) {
@@ -499,10 +564,7 @@ clock.addEventListener('click' , function() {
         timer3.style.left = boxIsland.clientWidth * 0.80 - timer3.clientWidth - 40 + 'px'
         timer4.style.left = boxIsland.clientWidth - timer4.clientWidth - 40 + 'px'
 
-
-
         document.querySelector('.name').style.display = 'none'
-
 
         hoverIcon(clock , 1 , "#5fbe00")
         testClickClock = !testClickClock
@@ -525,7 +587,6 @@ clock.addEventListener('click' , function() {
         timer3.style.opacity = '0'
         timer4.style.opacity = '0'
 
-
         hoverIcon(clock , 1 , "#ffffff")
         document.querySelector('.name').style.display = 'block'
         testClickClock = !testClickClock
@@ -545,6 +606,17 @@ function timerFunction() {
             var seconds = Math.floor(millisecondsRemaining / 1000);
             var minutes = Math.floor(seconds / 60);
             var remainingSeconds = seconds % 60;
+            if ( millisecondsRemaining <= 0 ) {
+                clearInterval(countdownInterval);
+                allow = false
+                sessionStorage.setItem('numberOfWord' , numberTrueWord.toString())
+                sessionStorage.setItem('speedFast' , (( numberTrueWord * 60000 ) / duration).toFixed(2) )
+                sessionStorage.setItem('accWrod' , ((numberTrueLetter * 100) / numberLetter).toFixed(2) )
+                sessionStorage.setItem('duration' , ( duration / 15000 ) )
+                sessionStorage.setItem('countClickNext' , countClickNext)
+                console.log(countClickNext)
+                window.location.href = 'contact.html'
+            }
             if (remainingSeconds < 10) {
                 remainingSeconds = '0' + remainingSeconds;
             }
@@ -552,10 +624,6 @@ function timerFunction() {
             clock.insertAdjacentHTML('afterbegin', `<div></div>`);
             clock.firstChild.textContent =  minutes + ' : ' + remainingSeconds;
             clock.firstChild.style.width = 'max-content'
-            if (millisecondsRemaining <= 0) {
-                clearInterval(countdownInterval);
-                allow = false
-            }
         }, 1000); 
     }
 }
@@ -573,3 +641,30 @@ showName( clock , ClockName , true )
 showName( next , nextName , true )
 showName( replay , replayName , true )
 showName( add , addName , true )
+
+
+if ( sessionStorage.getItem('replay') == '1' ) {
+    sessionStorage.setItem('replay' , '2' )
+    replayFromContact() ;
+}   
+
+function replayFromContact() {
+    clock.classList.add('timerOn')
+    var t = timers[ parseInt(sessionStorage.getItem('duration')) ]
+    console.log(t)
+        timeFromContact( t[0] , t[1] , t[2] )
+        mouseleave() ;
+        refreshText(texts[parseInt(sessionStorage.getItem('countClickNext'))])
+        clearInterval(countdownInterval);
+        clock.style.opacity = 1 ;
+    }
+
+
+if ( sessionStorage.getItem('next') == 'next') {
+    sessionStorage.setItem('next' , '')
+    console.log(sessionStorage.getItem('countClickNext') + ' form the if of nextcontact')
+    countClickNext = parseInt( sessionStorage.getItem('countClickNext') );
+    countClickNext++ ;
+    countClickNext == texts.length ? countClickNext = 0 : countClickNext ;
+    refreshText(texts[countClickNext]) ;
+}

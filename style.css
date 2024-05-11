@@ -235,7 +235,7 @@ body{
     width: calc(100% / 4);
     height: 100%;
     position: relative;
-    opacity: 0;
+    opacity: 0.15;
     transition: all 1s ease;
     display: block;
 }
