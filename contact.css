@@ -1,10 +1,11 @@
-*{
+* {
     padding: 0;
     margin: 0;
     user-select: none;
     caret-color: transparent;
 }
-.body { 
+
+.body {
     background-color: black;
     display: flex;
     justify-content: center;
@@ -15,13 +16,13 @@
     font-family: sans-serif;
 }
 
-.container { 
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container > div { 
+.container>div {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -30,48 +31,47 @@
     margin: 20%;
 }
 
-.container > div:nth-child(1) > div  { 
+.container>div:nth-child(1)>div {
     position: absolute;
     bottom: -30%;
     right: -25%;
     width: 40px;
-} 
+}
 
-.container > div:nth-child(1) > .boxSVG { 
+.container>div:nth-child(1)>.boxSVG {
     padding: 20px;
     cursor: pointer;
 }
 
-.container > div:nth-child(2) > .boxSVG { 
+.container>div:nth-child(2)>.boxSVG {
     padding: 20px;
     cursor: pointer;
 }
 
 
-.container > div:nth-child(2) > div { 
+.container>div:nth-child(2)>div {
     position: absolute;
     bottom: -30%;
     left: -25%;
     width: 40px;
-} 
+}
 
 
 
 .wpm,
-.acc { 
+.acc {
     text-align: center;
     width: 400px;
     font-size: 500%;
     color: #76ec00;
 }
 
-.nameWpm { 
+.nameWpm {
     font-size: 290%;
     color: #418100;
 }
 
-.nameAcc { 
+.nameAcc {
     font-size: 290%;
     color: #418100;
 }
-
