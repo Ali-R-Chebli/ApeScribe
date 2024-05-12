@@ -77,10 +77,10 @@ cursorFunction(letter , false)
 
     document.addEventListener('keydown' , function(e) {
             if(allow) {
-        if ( (e.keyCode >= 65 && e.keyCode <= 90) || 
-        e.keyCode === 188 || 
-        e.keyCode === 190 || 
-        e.keyCode === 222 ||
+        if ( (e.code.startsWith('Key') && e.code.length === 4) || 
+        e.code === 'Comma' || 
+        e.code === 'Period' || 
+        e.code === 'Quote' ||
         e.key == ' ' ||
         e.key == 'Backspace' ) {
 
@@ -120,7 +120,7 @@ cursorFunction(letter , false)
                     countw++ ;
 
                     console.log(numberword + '  number of all')
-                    console.log(numberTrueWord + '  number of ture')
+                    console.log(numberTrueWord + '  number of true')
                 }
             }//for spacee 
             
